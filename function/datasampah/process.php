@@ -1,7 +1,4 @@
 <?php 
-
-session_start();
-
 $mysqli = new mysqli('localhost', 'root', '', 'taweb') or die (mysqli_error($mysqli));
 
 $id = 0;
@@ -45,8 +42,11 @@ if (isset($_GET['edit'])){
     $result = $mysqli->query("SELECT * FROM sampah WHERE id=$id") or die($mysqli->error());
     if (count($result)==1){
         $row = $result->fetch_array();
-        $name = $row['name'];
-        $location = $row['location'];
+        $jenis_sampah = $row['jenis_sampah'];
+        $satuan = $row['satuan'];
+        $harga = $row['harga'];
+        $gambar = $row['gambar'];
+        $deskripsi = $row['deskripsi'];
     }
 }   
 

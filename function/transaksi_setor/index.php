@@ -8,7 +8,7 @@
 
 </head>
 <body>
-    <?php require_once 'process.php' ; ?>
+    <?php require_once 'setor.php' ; ?>
 
     <?php 
     
@@ -26,33 +26,42 @@
     <div class="container">
     <?php 
         $mysqli = new mysqli('localhost','root','','taweb') or die($mysqli_error($mysqli));
-        $result = $mysqli->query("SELECT * FROM sampah") or die($mysqli->error);
+        $result = $mysqli->query("SELECT * FROM setor") or die($mysqli->error);
        // pre_r(result);
        ?>
     <div class="row justify-content-center">
         <table class="table">
             <thead>
                 <tr>
-                    <th>Jenis sampah</th>
-                    <th>satuan</th>
-                    <th>harga</th>
-                    <th>gambar</th>
-                    <th>deskripsi</th>
+                    <th>Id Setor</th>
+                    <th>Tanggal setor</th>
+                    <th>NIN</th>
+                    <th>Nama</th>
+                    <th>Jenis Sampah</th>
+                    <th>Berat</th>
+                    <th>Harga</th>
+                    <th>Total</th>
+                    <th>NIA</th>
                     <th colspan="2">Action</th>
                 </tr>
             </thead>
         <?php 
             while ($row = $result->fetch_assoc()): ?>
                 <tr>
+                    <td><?php echo $row['id_setor']; ?></td>
+                    <td><?php echo $row['tanggal_setor']; ?></td>
+                    <td><?php echo $row['nin']; ?></td>
+                    <td><?php echo $row['nama']; ?></td>
                     <td><?php echo $row['jenis_sampah']; ?></td>
-                    <td><?php echo $row['satuan']; ?></td>
+                    <td><?php echo $row['berat']; ?></td>
                     <td><?php echo $row['harga']; ?></td>
-                    <td><?php echo $row['gambar']; ?></td>
-                    <td><?php echo $row['deskripsi']; ?></td>
+                    <td><?php echo $row['total']; ?></td>
+                    <td><?php echo $row['nia']; ?></td>
+                    
                     <td>
-                        <a href="index.php?edit=<?php echo $row['id']; ?>>"
+                        <a href="index.php?edit=<?php echo $row['id']; ?>"
                             class="btn btn-info">Edit</a>
-                        <a href="process.php?delete=<?php echo $row['id']; ?>>"
+                        <a href="process.php?delete=<?php echo $row['id']; ?>"
                             class="btn btn-danger">Delete</a>
                     </td>
                 </tr>
@@ -73,29 +82,49 @@
         <form action="process.php" method="POST">
             <input type="hidden" name="id" value="<?php echo $id; ?>">
             <div class="form-group">
-            <label>Jenis Sampah</label>
-            <input type="text" name="jenis_sampah" class="form-control" 
-                    value="<?php echo $jenis_sampah; ?>" placeholder="Enter jenis sampah">
+            <label>Id Setor</label>
+            <input type="text" name="id_setor" class="form-control" 
+                    value="<?php echo $id_setor; ?>" placeholder="Enter id setor">
             </div>
             <div class="form-group">
-            <label>Satuam</label>
-            <input type="text" name="satuan" class="form-control" 
-                    value="<?php echo $satuan; ?>" placeholder="Enter satuan">
+            <label>Tanggal Setor</label>
+            <input type="text" name="tanggal_setor" class="form-control" 
+                    value="<?php echo $tanggal_setor; ?>" placeholder="Enter Tanggal">
+            </div>
+            <div class="form-group">
+            <label>NIN</label>
+            <input type="text" name="nin" class="form-control" 
+                    value="<?php echo $nin; ?>" placeholder="Enter Nomor Induk Nasabah">
+            </div>
+            <div class="form-group">
+            <label>Nama</label>
+            <input type="text" name="nama" class="form-control" 
+                    value="<?php echo $nama; ?>" placeholder="Enter Nama">
+            </div>
+            <div class="form-group">
+            <label>Jenis Sampah</label>
+            <input type="text" name="jenis_sampah" class="form-control" 
+                    value="<?php echo $jenis_sampah; ?>"placeholder="Enter Jenis Sampah">
+            </div>
+            <div class="form-group">
+            <label>Berat</label>
+            <input type="text" name="berat" class="form-control" 
+                    value="<?php echo $berat; ?>" placeholder="Enter Berat">
             </div>
             <div class="form-group">
             <label>Harga</label>
             <input type="text" name="harga" class="form-control" 
-                    value="<?php echo $harga; ?>" placeholder="Enter harga">
+                    value="<?php echo $harga; ?>" placeholder="Enter Harga">
             </div>
             <div class="form-group">
-            <label>Gambar</label>
-            <input type="text" name="gambar" class="form-control" 
-                    value="<?php echo $gambar; ?>" placeholder="Enter gambar">
+            <label>Total</label>
+            <input type="text" name="total" class="form-control" 
+                    value="<?php echo $total; ?>" placeholder="Enter Total">
             </div>
             <div class="form-group">
-            <label>Deskripsi</label>
-            <input type="text" name="deskripsi" class="form-control" 
-                    value="<?php echo $deskripsi; ?>"placeholder="Enter deskripsi">
+            <label>NIA</label>
+            <input type="text" name="nia" class="form-control" 
+                    value="<?php echo $nia; ?>" placeholder="Enter Nomor Induk Admin">
             </div>
             <div class="form-group">
             <?php 

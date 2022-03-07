@@ -1,31 +1,43 @@
-<?php 
- 
+<?php
 session_start();
  
 if (!isset($_SESSION['username'])) {
-    header("Location: admin.php");
+    header("Location: index.php");
 }
- 
+  else {   
+error_reporting(E_ALL | E_STRICT); 
+include_once("config.php");
 ?>
- 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
- 
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/style_2.css">
-    <title>Berhasil Login</title>
-</head>
-<body>
 
-<div class="sidebar">
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Admin</title>
+		<link rel="stylesheet" href="css/style_2.css">
+		<link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway:700" rel="stylesheet">
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="shortcut icon" href="../asset/internal/img/img-local/favicon.ico">
+		<style>
+		  button{
+          height: 27px;
+          width: 85px;
+          background: #8cd91a;
+          border-radius: 5px;
+          color: #fff;
+          font-family: Montserrat;
+        }
+		</style>
+	</head>
+	<body>
+
+
+		<div class="sidebar">
 			<ul>
 				<li>
 					<a href="admin.php?page=data-admin"><span class="fa fa-user" aria-hidden="true"></span>Data Admin</a>
 				</li>	
+						<?php } ?>
 
 				<li>
 					<a href="admin.php?page=data-nasabah"><span class="fa fa-users" aria-hidden="true"></span>Data Nasabah</a>
@@ -54,12 +66,7 @@ if (!isset($_SESSION['username'])) {
 			</ul>
 		</div>
 
-
 		<div class="box-1">
-        <form action="" method="POST" class="login-email">
-            <?php echo "<h1>Selamat Datang, " . $_SESSION['username'] ."!". "</h1>"; ?>
- 
-        </form>
 			<section>
 	
 				<?php 
@@ -92,13 +99,14 @@ if (!isset($_SESSION['username'])) {
 							echo "<center><h3>Maaf. Halaman tidak di temukan !</h3></center>";
 							break;
 					}
+				}else{
+					include "function/view-admin.php";
 				}
+
 				 ?>
 			</section>
 		</div>
 		
 
-</body>
+	</body>
 </html>
-
-
